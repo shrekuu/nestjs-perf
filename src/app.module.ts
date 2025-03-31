@@ -1,10 +1,14 @@
 import { Module } from '@nestjs/common';
+import { NestListRoutesModule } from 'nest-list-routes';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { PrismaService } from './prisma.service';
+import { TickerModule } from './ticker/ticker.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [],
+  imports: [TickerModule, UsersModule, NestListRoutesModule.forRoot()],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, PrismaService],
 })
 export class AppModule {}
